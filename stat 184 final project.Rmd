@@ -1,0 +1,8 @@
+---
+authors: "Andrew Harley"
+title: "Stat 184 Final Project"
+output: html_notebook
+---
+
+
+
