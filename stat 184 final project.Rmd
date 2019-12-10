@@ -6,6 +6,10 @@ output: html_notebook
 
 ###DATA
 ```{r}
+library(DataComputing)
+library(mosaicData)
+library(ggplot2)
+library(dplyr)
 library(readr)
 nfl_stadiums <- read_csv("nfl_stadiums.csv")
 View(nfl_stadiums)
