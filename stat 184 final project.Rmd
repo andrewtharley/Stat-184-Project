@@ -1,5 +1,5 @@
 ---
-authors: "Andrew Harley"
+authors: "Andrew Harley & Abraham Arbelaez"
 title: "Stat 184 Final Project"
 output: html_notebook
 ---
