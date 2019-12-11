@@ -48,8 +48,11 @@ spreadspoke_scores2 %>%
 
 ```{r}
 spreadspoke_scores2 %>%
-  mutate(scoretotal = score_away + score_home)
+  mutate(scoretotal = score_away + score_home) %>%
+  mutate(over_under_difference = scoretotal - over_under_line)
 ```
+
+
 
 (B) .Rmd Line number(s) for a join operation: 
 
