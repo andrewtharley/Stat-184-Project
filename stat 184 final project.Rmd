@@ -1,6 +1,6 @@
 ---
 title: 'Final Stat 184 Project'
-author: "Andrew Harley & Abraham Arbalaez"
+author: "Andrew Harley & Abraham Arbelaez"
 date: "Due December 17, 2019"
 output:  html_notebook
 ---
