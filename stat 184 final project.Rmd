@@ -6,8 +6,14 @@ output:  html_notebook
 ---
 
 # Purpose
-The purpose of this project is to figure out how much weather affects the over/under of NFL games.  
+The purpose of this project is to figure out how much weather affects the over/under and the outcomes of NFL games over the past 10 years.  
 
+```{r}
+library(mosaicData)
+library(tidyselect)
+library(dplyr)
+library(readr)
+```
 
 ### Data Access
 
@@ -29,6 +35,11 @@ View(nfl_stadiums)
 
 
 (A) .Rmd Line number(s) for general data wrangling: 
+```{r}
+spreadspoke_scores %>%
+  filter(schedule_season>2009)
+View(spreadspoke_scores)
+```
 
 
 (B) .Rmd Line number(s) for a join operation: 
