@@ -43,28 +43,19 @@ spreadspoke_scores %>%
 ```
 
 ```{r}
+spreadspoke_scores2 <-
 spreadspoke_scores2 %>%
   filter(stadium_neutral== FALSE)
 ```
 
-```{r}
-## Over
-spreadspoke_scores2 %>%
-  mutate(scoretotal = score_away + score_home) %>%
-  mutate(over_under_difference = scoretotal - over_under_line) %>%
-  mutate(over_or_under = ifelse(over_under_difference > 0, "Over", "Under")) %>%
-  filter(over_or_under != "Under") %>%
-  summarise(over_or_under = n())
-```
 
 ```{r}
-## Under
+spreadspoke_scores2 <-
 spreadspoke_scores2 %>%
   mutate(scoretotal = score_away + score_home) %>%
   mutate(over_under_difference = scoretotal - over_under_line) %>%
   mutate(over_or_under = ifelse(over_under_difference > 0, "Over", "Under")) %>%
-  filter(over_or_under == "Under") %>%
-  summarise(over_or_under = n())
+  filter(over_or_under != "NA")
 ```
 
 
@@ -96,6 +87,9 @@ spreadspoke_scores2 %>%
 
 
 (A) .Rmd Line number(s) for use of mulitple different geoms:  
+```{r}
+ggplot(data=spreadspoke_scores2,aes(x=over_or_under,y=weather_wind_mph ))+geom_bar(stat='identity',position='dodge', width=.9) 
+```
 
 (B) .Rmd Line number(s) for use of multiple aesthetics:  
 
