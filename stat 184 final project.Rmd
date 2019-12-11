@@ -13,6 +13,7 @@ library(mosaicData)
 library(tidyselect)
 library(dplyr)
 library(readr)
+library(ggplot2)
 ```
 
 ### Data Access
@@ -47,11 +48,24 @@ spreadspoke_scores2 %>%
 ```
 
 ```{r}
+## Over
 spreadspoke_scores2 %>%
   mutate(scoretotal = score_away + score_home) %>%
-  mutate(over_under_difference = scoretotal - over_under_line)
+  mutate(over_under_difference = scoretotal - over_under_line) %>%
+  mutate(over_or_under = ifelse(over_under_difference > 0, "Over", "Under")) %>%
+  filter(over_or_under != "Under") %>%
+  summarise(over_or_under = n())
 ```
 
+```{r}
+## Under
+spreadspoke_scores2 %>%
+  mutate(scoretotal = score_away + score_home) %>%
+  mutate(over_under_difference = scoretotal - over_under_line) %>%
+  mutate(over_or_under = ifelse(over_under_difference > 0, "Over", "Under")) %>%
+  filter(over_or_under == "Under") %>%
+  summarise(over_or_under = n())
+```
 
 
 (B) .Rmd Line number(s) for a join operation: 
