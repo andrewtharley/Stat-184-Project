@@ -4,16 +4,15 @@ title: "Stat 184 Final Project"
 output: html_notebook
 ---
 
-###LIBRARIES
+### LIBRARIES
 ```{r}
-library(DataComputing)
 library(mosaicData)
 library(ggplot2)
 library(dplyr)
 library(readr)
 ```
 
-###DATA
+### DATA ACCESS
 ```{r}
 nfl_stadiums <- read_csv("nfl_stadiums.csv")
 View(nfl_stadiums)
