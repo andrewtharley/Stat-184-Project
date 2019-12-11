@@ -36,11 +36,20 @@ View(nfl_stadiums)
 
 (A) .Rmd Line number(s) for general data wrangling: 
 ```{r}
+spreadspoke_scores2 <-
 spreadspoke_scores %>%
   filter(schedule_season>2009)
-View(spreadspoke_scores)
 ```
 
+```{r}
+spreadspoke_scores2 %>%
+  filter(stadium_neutral== FALSE)
+```
+
+```{r}
+spreadspoke_scores2 %>%
+  mutate(scoretotal = score_away + score_home)
+```
 
 (B) .Rmd Line number(s) for a join operation: 
 
