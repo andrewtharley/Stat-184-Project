@@ -55,8 +55,14 @@ spreadspoke_scores2 %>%
   filter(over_or_under != "NA")
 ```
 
+We then created a new variable, which was the total score of each game. Then we used that total score and subtracted it from the over/under line to find the difference between the score and the line. We then created another variable determining if the over or under hit.
 
+```{r}
+nfl_stadiums <-
+nfl_stadiums %>%
+  rename(stadium = stadium_name)
+```
 
-
+In order to join the two data frames together, we renamed the stadium_name to stadium. 
 
 
