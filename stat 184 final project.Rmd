@@ -5,30 +5,11 @@ date: "Due December 17, 2019"
 output:  html_notebook
 ---
 
-# Purpose
-The purpose of this project is to figure out how much weather affects the over/under and the outcomes of NFL games over the past 10 years.  
-
-```{r}
-library(mosaicData)
-library(tidyselect)
-library(dplyr)
-library(readr)
-library(ggplot2)
-```
-
 ### Data Access
 
 (A) .Rmd Line numbers where at least two different data sources are imported:  
-```{r}
-spreadspoke_scores <- read_csv("spreadspoke_scores.csv")
-nfl_stadiums <- read_csv("nfl_stadiums.csv")
-```
 
 (B) .Rmd Line numbers for inspecting data intake:  
-```{r}
-View(spreadspoke_scores)
-View(nfl_stadiums)
-```
 
 ### Data Wrangling (5 out of 8 required)
 
@@ -36,27 +17,6 @@ View(nfl_stadiums)
 
 
 (A) .Rmd Line number(s) for general data wrangling: 
-```{r}
-spreadspoke_scores2 <-
-spreadspoke_scores %>%
-  filter(schedule_season>2009)
-```
-
-```{r}
-spreadspoke_scores2 <-
-spreadspoke_scores2 %>%
-  filter(stadium_neutral== FALSE)
-```
-
-
-```{r}
-spreadspoke_scores2 <-
-spreadspoke_scores2 %>%
-  mutate(scoretotal = score_away + score_home) %>%
-  mutate(over_under_difference = scoretotal - over_under_line) %>%
-  mutate(over_or_under = ifelse(over_under_difference > 0, "Over", "Under")) %>%
-  filter(over_or_under != "NA")
-```
 
 
 (B) .Rmd Line number(s) for a join operation: 
@@ -87,9 +47,6 @@ spreadspoke_scores2 %>%
 
 
 (A) .Rmd Line number(s) for use of mulitple different geoms:  
-```{r}
-ggplot(data=spreadspoke_scores2,aes(x=over_or_under,y=weather_wind_mph ))+geom_bar(stat='identity',position='dodge', width=.9) 
-```
 
 (B) .Rmd Line number(s) for use of multiple aesthetics:  
 
