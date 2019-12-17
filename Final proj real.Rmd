@@ -169,7 +169,7 @@ Since Denver's stadium has such a high altitude, we seperated this stadium from 
 
 Based off the data from the NFL games since 2010, there seems to be a few relationships between weather and the outcome of the game. The one relationship we found was a "cold team" home field advantage. It seemed that "cold weather teams" play better against the spread in "cold games". The underdogs won outright at home more than the amount of times the away favorite covered. Also, the home favorite covered more often when they won than the away favorite in cold games. 
 There is also a slight realtionship between wind and the over/under. We realized as the wind increased, the over's margin of victory decreased, while the under's stayed about the same. This means that the over was winning by less and less as wind increased. Plus once the wind reached very high levels, the under hit every time. 
-Latsly, we concluded that there was no relationship between elevation and the over/under. We thought that maybe the thinner air coukd have an effect on the outcome, but the plots showed that the over and under hit somewhat evenly at all altitudes.
+Lastly, we concluded that there was no relationship between elevation and the over/under. We thought that maybe the thinner air could have an effect on the outcome, but the plots showed that the over and under hit somewhat evenly at all altitudes.
 
 
 
