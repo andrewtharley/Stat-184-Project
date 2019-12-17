@@ -6,11 +6,17 @@ output:  html_notebook
 ---
 
 # Purpose
-The purpose of this project is to figure out how much weather affects the over/under and the outcomes of NFL games over the past 10 years.  
+
+The purpose of this project is to figure out any details that may give an advantage to NFL bettors. 
+
+# Research Question
+
+Does weather or elevation affect the outcome of an NFL, such as the score total or the spread cover?
 
 ```{r}
+library(DataComputing)
 library(mosaicData)
-library(tidyselect)
+library(tidyverse)
 library(dplyr)
 library(readr)
 library(ggplot2)
@@ -19,7 +25,10 @@ library(ggplot2)
 
 ```{r}
 spreadspoke_scores <- read_csv("spreadspoke_scores.csv")
+webpage : "https://www.kaggle.com/tobycrabtree/nfl-scores-and-betting-data#spreadspoke_scores.csv"
+
 nfl_stadiums <- read_csv("nfl_stadiums.csv")
+webpage : "https://www.kaggle.com/tobycrabtree/nfl-scores-and-betting-data#nfl_stadiums.csv"
 ```
 
 
@@ -65,4 +74,35 @@ nfl_stadiums %>%
 
 In order to join the two data frames together, we renamed the stadium_name to stadium. 
 
+```{r}
+nfl_stadiums <-
+  nfl_stadiums %>%
+  select(stadium, stadium_location, stadium_type, stadium_weather_type, stadium_surface, ELEVATION)
+```
+
+Here we are selecting the few variables that we need from the nfl_stadiums data, so we can clean it up befiore we join the two tables. 
+
+```{r}
+Scores <-
+spreadspoke_scores2 %>%
+  left_join(nfl_stadiums)
+
+View(Scores)
+```
+
+Here we joined the two tables together to match the stadiums that each game was played at and its info.
+
+```{r}
+Scores %>%
+  spread(key = over_or_under, value = over_under_difference) %>%
+  filter(Over != "NA") %>%
+  summarise(avgOver = mean(Over))
+
+Scores %>%
+  spread(key = over_or_under, value = over_under_difference) %>%
+  filter(Under != "NA") %>%
+  summarise(avgUnder = mean(Under))
+```
+
+Here we spread the over_or_under variable to have the Over and the Under become two seperate variables with the value being the difference between the score total and the line. Then we took the average score difference for each the over and the under. Here it shows that the average difference when the Over hits is slightly larger than the difference when the Under hits. 
 
