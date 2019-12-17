@@ -106,3 +106,15 @@ Scores %>%
 
 Here we spread the over_or_under variable to have the Over and the Under become two seperate variables with the value being the difference between the score total and the line. Then we took the average score difference for each the over and the under. Here it shows that the average difference when the Over hits is slightly larger than the difference when the Under hits. 
 
+```{r}
+Scores %>%
+  select(team_home, score_home, team_away, score_away) %>%
+  mutate(team = ifelse(score_home > score_away, team_home, team_away)) %>%
+  mutate(score = ifelse(score_home > score_away, score_home, score_away)) %>%
+  select(team, score) %>%
+  group_by(team) %>%
+  summarise(wins = n()) %>%
+  arrange(desc(wins)) 
+```
+
+
