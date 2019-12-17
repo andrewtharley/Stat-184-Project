@@ -11,7 +11,7 @@ The purpose of this project is to figure out any details that may give an advant
 
 # Research Question
 
-Does weather or elevation affect the outcome of an NFL, such as the score total or the spread cover?
+Does weather or temperature affect the outcome of an NFL, such as the score total or the spread cover?
 
 ```{r}
 library(DataComputing)
@@ -129,12 +129,16 @@ Scores2 <-
 view(Scores2)
 ```
 
+Here we had to do something very complicated. Since the favorite variable only gave the team's abbreaviation, we had to match it to the full team name. Then we made a new variable saying if the favorite was home or away. We found the score difference between the favorites and the underdogs. After that, we found the absolute value of the point spread by removing the negative sign from each value. If the the score difference ended beiong larger than the absolute value of the point spread, then it would come out that they covered.  If not it would say the favorite did not cover. If they were equal, then that results in a push, where one gets their money back. 
+
 ```{r}
 Scores2 %>%
   group_by(cover) %>%
   summarise(spread_hits = n()) %>%
   arrange(desc(spread_hits))
 ```
+
+This was unexpected for me. The underdog covered the spread almost three times as often as the favorite since 2010. That shows maybe it is safer to bet underdogs than the favorite. 
 
 ```{r}
 Scores2 %>%
@@ -145,4 +149,18 @@ Scores2 %>%
 
 ```
 
-Based off this scatterplot, one can see that there are a lot more home favorites than away favorites. The blue dots represent the favorites covering. 
+Based off this scatterplot, one can see that there are a lot more home favorites than away favorites. The blue dots represent the favorites covering. We limited the temperature to 45 degrees, since we consider that to be a "cold weather game". We found that there seems to be a "cold team" home field advantage. For the away favorites, a good proportion of those teams are losing outright to the home underdog in the cold weather games. Also, for the favorites winning, less than half are even covering the spread. For the home favorites, when the score difference is by 15 or more, a majority of those games covered the spread. This shows that "cold teams" can beat their opponents by larger margins, covering the spread in "cold games".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
