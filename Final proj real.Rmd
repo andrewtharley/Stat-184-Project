@@ -157,8 +157,20 @@ Scores2 %>%
   geom_point(aes(color = over_or_under)) 
 ```
 
+```{r}
+Scores2 %>%
+  filter(stadium_type == "outdoor") %>%
+  ggplot(aes(x = ELEVATION, y = over_under_difference)) +
+  geom_point(aes(color = over_or_under)) +
+  xlim(0, 500)
+```
 
-
+```{r}
+Scores2 %>%
+  filter(stadium == "Sports Authority Field at Mile High") %>%
+  ggplot(aes(x = ELEVATION, y = over_under_difference)) +
+  geom_point(aes(color = over_or_under)) 
+```
 
 
 
