@@ -11,7 +11,7 @@ The purpose of this project is to figure out any details that may give an advant
 
 # Research Question
 
-Does weather or temperature affect the outcome of an NFL, such as the score total or the spread cover?
+Does weather or elevation affect the outcome of an NFL game, such as the score total or the spread cover?
 
 ```{r}
 library(DataComputing)
@@ -107,17 +107,6 @@ Scores %>%
 Here we spread the over_or_under variable to have the Over and the Under become two seperate variables with the value being the difference between the score total and the line. Then we took the average score difference for each the over and the under. Here it shows that the average difference when the Over hits is slightly larger than the difference when the Under hits. 
 
 ```{r}
-Scores %>%
-  select(team_home, score_home, team_away, score_away) %>%
-  mutate(team = ifelse(score_home > score_away, team_home, team_away)) %>%
-  mutate(score = ifelse(score_home > score_away, score_home, score_away)) %>%
-  select(team, score) %>%
-  group_by(team) %>%
-  summarise(wins = n()) %>%
-  arrange(desc(wins)) 
-```
-
-```{r}
 Scores2 <-
   Scores %>%
   mutate(team_favorite = ifelse(team_favorite_id == "NO", "New Orleans Saints", ifelse(team_favorite_id == "MIA", "Miami Dolphins", ifelse(team_favorite_id == "MIN", "Minnesota Vikings",ifelse(team_favorite_id == "CHI", "Chicago Bears", ifelse(team_favorite_id == "BUF", "Buffalo Bills", ifelse(team_favorite_id == "DET", "Detroit Lions", ifelse(team_favorite_id == "IND", "Indianapolis Colts", ifelse(team_favorite_id == "HOU", "Houston Texans", ifelse(team_favorite_id == "JAX", "Jacksonville Jaguars", ifelse(team_favorite_id == "DEN", "Denver Broncos", ifelse(team_favorite_id == "NE", "New England Patriots", ifelse(team_favorite_id == "CIN", "Cincinnati Bengals", ifelse(team_favorite_id == "NYG", "New York Giants", ifelse(team_favorite_id == "CAR", "Carolina Panthers", ifelse(team_favorite_id == "GB", "Green Bay Packers", ifelse(team_favorite_id == "PHI", "Philadelphia Eagles", ifelse(team_favorite_id == "ATL", "Atlanta Falcons", ifelse(team_favorite_id == "PIT", "Pittsburgh Steelers", ifelse(team_favorite_id == "SF", "San Francisco 49ers", ifelse(team_favorite_id == "SEA", "Seattle Seahawks", ifelse(team_favorite_id == "ARI", "Arizona Cardinals", ifelse(team_favorite_id == "LAR", "St. Louis Rams", ifelse(team_favorite_id == "TB", "Tampa Bay Buccaneers", ifelse(team_favorite_id == "OAK", "Oakland Raiders", ifelse(team_favorite_id == "TEN", "Tennessee Titans", ifelse(team_favorite_id == "DAL", "Dallas Cowboys", ifelse(team_favorite_id == "WAS", "Washington Redskins", ifelse(team_favorite_id == "LAC", "San Diego Chargers", ifelse(team_favorite_id == "KC", "Kansas City Chiefs", ifelse(team_favorite_id == "NYJ", "New York Jets", ifelse(team_favorite_id == "CLE", "Cleveland Browns", "Baltimore Ravens" )))))))))))))))))))))))))))))))) %>%
@@ -148,7 +137,7 @@ Scores2 %>%
   xlim(-10, 45) 
 ```
 
-Based off this scatterplot, one can see that there are a lot more home favorites than away favorites. The blue dots represent the favorites covering. We limited the temperature to 45 degrees, since we consider that to be a "cold weather game". We found that there seems to be a "cold team" home field advantage. For the away favorites, a good proportion of those teams are losing outright to the home underdog in the cold weather games. Also, for the favorites winning, less than half are even covering the spread. For the home favorites, when the score difference is by 15 or more, a majority of those games covered the spread. This shows that "cold teams" can beat their opponents by larger margins, covering the spread in "cold games".
+Based off this scatterplot, one can see that there are a lot more home favorites than away favorites. The blue dots represent the favorites covering. We limited the temperature to 45 degrees, since we consider that to be a "cold weather game". We found that there seems to be a "cold team" home field advantage. For the away favorites, a good proportion of those teams are losing outright to the home underdog in the cold weather games. Also, for the favorites winning, less than half are even covering the spread. For the home favorites, when the score difference is by 15 or more, a majority of those games covered the spread. This shows that "cold teams" can beat their visiting opponents by larger margins, covering the spread in "cold games".
 
 ```{r}
 Scores2 %>%
@@ -156,6 +145,8 @@ Scores2 %>%
   ggplot(aes(x = weather_wind_mph, y = over_under_difference))+
   geom_point(aes(color = over_or_under)) 
 ```
+
+When it comes to the over, the margin between the score totals and the over/under line decreases as the wind increases. This means that as the wind increases the over can still hit, but it is not winning by as much as it is with less wind. When the wind reaches about 10-12 mph and above, the under seeems to hit more often than the over. In the four cases that the wind had reached above 25 mph, the under hit every time. Although that isn't much data to make a conclusion, one can assume that it is likely the under would hit if there were extreme winds. 
 
 ```{r}
 Scores2 %>%
@@ -172,6 +163,13 @@ Scores2 %>%
   geom_point(aes(color = over_or_under)) 
 ```
 
+Since Denver's stadium has such a high altitude, we seperated this stadium from the other outdoor stadiums and made a seperate plot. From the looks of these plots, it does not seem like there is a relationship between elevation and the over/under. 
+
+### Conclusion
+
+Based off the data from the NFL games since 2010, there seems to be a few relationships between weather and the outcome of the game. The one relationship we found was a "cold team" home field advantage. It seemed that "cold weather teams" play better against the spread in "cold games". The underdogs won outright at home more than the amount of times the away favorite covered. Also, the home favorite covered more often when they won than the away favorite in cold games. 
+There is also a slight realtionship between wind and the over/under. We realized as the wind increased, the over's margin of victory decreased, while the under's stayed about the same. This means that the over was winning by less and less as wind increased. Plus once the wind reached very high levels, the under hit every time. 
+Latsly, we concluded that there was no relationship between elevation and the over/under. We thought that maybe the thinner air coukd have an effect on the outcome, but the plots showed that the over and under hit somewhat evenly at all altitudes.
 
 
 
