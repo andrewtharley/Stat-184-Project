@@ -25,10 +25,10 @@ library(ggplot2)
 
 ```{r}
 spreadspoke_scores <- read_csv("spreadspoke_scores.csv")
-webpage : "https://www.kaggle.com/tobycrabtree/nfl-scores-and-betting-data#spreadspoke_scores.csv"
+webpage <- "https://www.kaggle.com/tobycrabtree/nfl-scores-and-betting-data#spreadspoke_scores.csv"
 
 nfl_stadiums <- read_csv("nfl_stadiums.csv")
-webpage : "https://www.kaggle.com/tobycrabtree/nfl-scores-and-betting-data#nfl_stadiums.csv"
+webpage2 <- "https://www.kaggle.com/tobycrabtree/nfl-scores-and-betting-data#nfl_stadiums.csv"
 ```
 
 
