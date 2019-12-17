@@ -117,4 +117,23 @@ Scores %>%
   arrange(desc(wins)) 
 ```
 
+```{r}
+Scores2 <-
+  Scores %>%
+  mutate(team_favorite = ifelse(team_favorite_id == "NO", "New Orleans Saints", ifelse(team_favorite_id == "MIA", "Miami Dolphins", ifelse(team_favorite_id == "MIN", "Minnesota Vikings",ifelse(team_favorite_id == "CHI", "Chicago Bears", ifelse(team_favorite_id == "BUF", "Buffalo Bills", ifelse(team_favorite_id == "DET", "Detroit Lions", ifelse(team_favorite_id == "IND", "Indianapolis Colts", ifelse(team_favorite_id == "HOU", "Houston Texans", ifelse(team_favorite_id == "JAX", "Jacksonville Jaguars", ifelse(team_favorite_id == "DEN", "Denver Broncos", ifelse(team_favorite_id == "NE", "New England Patriots", ifelse(team_favorite_id == "CIN", "Cincinnati Bengals", ifelse(team_favorite_id == "NYG", "New York Giants", ifelse(team_favorite_id == "CAR", "Carolina Panthers", ifelse(team_favorite_id == "GB", "Green Bay Packers", ifelse(team_favorite_id == "PHI", "Philadelphia Eagles", ifelse(team_favorite_id == "ATL", "Atlanta Falcons", ifelse(team_favorite_id == "PIT", "Pittsburgh Steelers", ifelse(team_favorite_id == "SF", "San Francisco 49ers", ifelse(team_favorite_id == "SEA", "Seattle Seahawks", ifelse(team_favorite_id == "ARI", "Arizona Cardinals", ifelse(team_favorite_id == "LAR", "St. Louis Rams", ifelse(team_favorite_id == "TB", "Tampa Bay Buccaneers", ifelse(team_favorite_id == "OAK", "Oakland Raiders", ifelse(team_favorite_id == "TEN", "Tennessee Titans", ifelse(team_favorite_id == "DAL", "Dallas Cowboys", ifelse(team_favorite_id == "WAS", "Washington Redskins", ifelse(team_favorite_id == "LAC", "San Diego Chargers", ifelse(team_favorite_id == "KC", "Kansas City Chiefs", ifelse(team_favorite_id == "NYJ", "New York Jets", "Baltimore Ravens" ))))))))))))))))))))))))))))))) %>%
+  select(team_home, score_home, team_away, score_away, team_favorite, spread_favorite) %>%
+  mutate(home_team_fav = ifelse(team_favorite == team_home, "Home", "Away")) %>%
+  mutate(scoredifference = ifelse(home_team_fav == "Home", score_home - score_away, score_away - score_home))
+
+view(Scores2)
+```
+
+```{r}
+Scores2 %>%
+  mutate(abs_spread = gsub(pattern = "-", replacement = "", spread_favorite)) %>%
+  mutate(cover = ifelse(scoredifference > abs_spread, T, ifelse(scoredifference == abs_spread, "PUSH", F))) %>%
+  group_by(cover) %>%
+  summarise(spread_hits = n()) %>%
+  arrange(desc(spread_hits))
+```
 
