@@ -80,7 +80,7 @@ nfl_stadiums <-
   select(stadium, stadium_location, stadium_type, stadium_weather_type, stadium_surface, ELEVATION)
 ```
 
-Here we are selecting the few variables that we need from the nfl_stadiums data, so we can clean it up befiore we join the two tables. 
+Here we are selecting the few variables that we need from the nfl_stadiums data, so we can clean it up before we join the two tables. 
 
 ```{r}
 Scores <-
@@ -118,7 +118,7 @@ Scores2 <-
 view(Scores2)
 ```
 
-Here we had to do something very complicated. Since the favorite variable only gave the team's abbreaviation, we had to match it to the full team name. Then we made a new variable saying if the favorite was home or away. We found the score difference between the favorites and the underdogs. After that, we found the absolute value of the point spread by removing the negative sign from each value. If the the score difference ended beiong larger than the absolute value of the point spread, then it would come out that they covered.  If not it would say the favorite did not cover. If they were equal, then that results in a push, where one gets their money back. 
+Here we had to do something very complicated. Since the favorite variable only gave the team's abbreviation, we had to match it to the full team name. Then we made a new variable saying if the favorite was home or away. We found the score difference between the favorites and the underdogs. After that, we found the absolute value of the point spread by removing the negative sign from each value. If the the score difference ended being larger than the absolute value of the point spread, then it would come out that they covered.  If not it would say the favorite did not cover. If they were equal, then that results in a push, where one gets their money back. 
 
 ```{r}
 Scores2 %>%
